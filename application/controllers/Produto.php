@@ -37,7 +37,7 @@ class Produto extends CI_Controller {
             exit("Nenhum acesso de script direto permitido");
         }
 
-		$config["upload_path"] = "https://famcosmeticos.com.br/public/produtos/";
+		$config["upload_path"] = "/public/produtos/";
 		$config["allowed_types"] = "gif|png|jpg";
 		$config["overwrite"] = TRUE;
 

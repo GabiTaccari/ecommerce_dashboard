@@ -7,7 +7,7 @@ function realizaLogin()
     $.ajax({
         type: 'post',
         dataType:"json",
-        url: "http://localhost/admin/index.php/login/realizaLogin",
+        url: site_url + "login/realizaLogin",
         data: {
             usuario: user,
             senha: pass
