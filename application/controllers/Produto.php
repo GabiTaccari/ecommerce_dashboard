@@ -37,7 +37,7 @@ class Produto extends CI_Controller {
             exit("Nenhum acesso de script direto permitido");
         }
 
-		$config["upload_path"] = "./tmp/";
+		$config["upload_path"] = "https://famcosmeticos.com.br/public/produtos/";
 		$config["allowed_types"] = "gif|png|jpg";
 		$config["overwrite"] = TRUE;
 
@@ -52,7 +52,7 @@ class Produto extends CI_Controller {
 		} else {
 			if($this->upload->data()["file_size"] <=1024) {
 				$file_name = $this->upload->data()["file_name"];
-				$json["img_path"] = base_url() . "tmp/" . $file_name;
+				$json["img_path"] = "/public/produtos/" . $file_name;
 				$json["status"]=1;
 			} else {
 				$json["status"]=0;
@@ -78,6 +78,8 @@ class Produto extends CI_Controller {
 		$data["necessario_cnpj"] = $_POST["necessarioCNPJ"];
 		$data["img"] = $_POST["imagem_principal"];
 		$data["img2"] = $_POST["imagem2"];
+        $data["img3"] = $_POST["imagem3"];
+        $data["img4"] = $_POST["imagem4"];
 
 		if(empty($data["nome"])) {
 			echo json_encode(array("status" => false, "msg"=>"O campo nome é obrigatório"));
@@ -106,6 +108,18 @@ class Produto extends CI_Controller {
 			$dados['produto'] = $id;
 			$dados['path']=$data["img2"];
 			$this->imagens->insert($dados);
+
+            if(!empty($data["img3"])){
+                $dados['produto'] = $id;
+                $dados['path']=$data["img3"];
+                $this->imagens->insert($dados);
+            }
+
+            if(!empty($data["img4"])){
+                $dados['produto'] = $id;
+                $dados['path']=$data["img4"];
+                $this->imagens->insert($dados);
+            }
 
 
 		} else {

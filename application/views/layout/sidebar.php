@@ -80,12 +80,12 @@
                     <div class="collapse" id="sidebarLayouts">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="sidebar-style-1.html">
+                                <a href="<?php echo base_url();?>categoria/">
                                     <span class="sub-item">Visualizar Todas</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="overlay-sidebar.html">
+                                <a href="" data-toggle='modal' data-target='#modal_nova_categoria'>
                                     <span class="sub-item">Adicionar Nova</span>
                                 </a>
                             </li>

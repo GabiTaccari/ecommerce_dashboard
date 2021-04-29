@@ -140,7 +140,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-            <h4 class="modal-title">Cursos</h4>
+            <h4 class="modal-title">Produto</h4>
                 <button type="button" class="close" data-dismiss="modal">X</button>
                 
             </div>
@@ -223,7 +223,7 @@
                                 <i class="fa fa-upload"></i> Importar Imagem
                                 <input type="file" accept="image/*" style="display: none;" id="btn_upload_produto_img">
                             </label>
-                            <input id="cover_image" name="cover-image">
+                            <input id="cover_image" type="hidden" name="cover-image">
                             <span class="help-block"></span>
                         </div>
                     </div>
@@ -237,13 +237,79 @@
                                 <i class="fa fa-upload"></i> Importar Imagem
                                 <input type="file" accept="image/*" style="display: none;" id="btn2_upload_produto_img">
                             </label>
-                            <input id="image2" name="image2">
+                            <input id="image2" type="hidden" name="image2">
+                            <span class="help-block"></span>
+                        </div>
+                        <!--
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-2">
+
+                        <button type="button" class="btn btn-icon btn-round btn-primary">
+											<i class="fa fa-plus"></i>
+										</button>
+
+                        </div>-->
+
+                        <div class="col-lg-12">
+                            <img src="" style="max-height:400px; max-width: 400px;" alt="" id="produto_img_path3">
+                            <label class="btn btn-block btn-info">
+                                <i class="fa fa-upload"></i> Importar Imagem
+                                <input type="file" accept="image/*" style="display: none;" id="btn3_upload_produto_img">
+                            </label>
+                            <input id="image3" type="hidden" name="image3">
+                            <span class="help-block"></span>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <img src="" style="max-height:400px; max-width: 400px;" alt="" id="produto_img_path4">
+                            <label class="btn btn-block btn-info">
+                                <i class="fa fa-upload"></i> Importar Imagem
+                                <input type="file" accept="image/*" style="display: none;" id="btn4_upload_produto_img">
+                            </label>
+                            <input id="image4" type="hidden" name="image4">
                             <span class="help-block"></span>
                         </div>
                     </div>
 
                     <div class="form-group text-center">
                         <button id="btn_save_produto" type="button" onclick="salvaProduto()" class="btn btn-success">
+                            <i class="fa fa-save"></i> Salvar
+                        </button>
+                        <span class="help-block"></span>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal para adicionar categoria -->
+
+<div id="modal_nova_categoria" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title">Categoria</h4>
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                
+            </div>
+            <div class="modal-body">
+                <form action="" id="form_produto">
+                    <input hidden name="id">
+
+                    <div class="form-group">
+                        <label for="name">Nome:</label>
+                        <div class="col-lg-12">
+                            <input type="text" id="name_categoria" class="form-control" name="name_categoria"  >
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button id="btn_save_produto" type="button" onclick="salvaCategoria()" class="btn btn-success">
                             <i class="fa fa-save"></i> Salvar
                         </button>
                         <span class="help-block"></span>

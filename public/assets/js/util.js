@@ -9,6 +9,16 @@ $(function(){
     {
         uploadImg($(this), $("#produto_img_path2"), $("#image2"));
     });
+
+    $("#btn3_upload_produto_img").change(function()
+    {
+        uploadImg($(this), $("#produto_img_path3"), $("#image3"));
+    });
+
+    $("#btn4_upload_produto_img").change(function()
+    {
+        uploadImg($(this), $("#produto_img_path4"), $("#image4"));
+    });
 });
     
 $("#btn_edit_produto").click(function() 
@@ -42,6 +52,34 @@ function editarProduto(id)
                 $("#status").val(data.status);
                 $("#quantidade").val(data.quantidade);
                 $("#necessario_cnpj").val(data.necessario_cnpj);
+            }
+            else {
+                alert("Não logou");
+            }
+        }
+        
+    });
+}
+
+function editarCategoria(id)
+{
+    $.ajax({
+        type: 'post',
+        dataType:"json",
+        url: site_url + "categoria/editarCategoria",
+        data: {
+            id: id
+        },
+        beforeSend() {
+
+        },error: function(erro){
+            console.log(erro.statusText);
+        },
+        success: function(data) {
+            if(data.status == true){
+                $("#modal_categoria").modal("show");
+                console.log(data.nome);
+                $("#name_categoria").val(data.nome);
             }
             else {
                 alert("Não logou");
@@ -100,6 +138,8 @@ function salvaProduto()
             necessarioCNPJ: $('select[name="necessario_cnpj"]').val(),
             imagem_principal: $('input[name="cover-image"]').val(),
             imagem2: $('input[name="image2"]').val(),
+            imagem3: $('input[name="image3"]').val(),
+            imagem4: $('input[name="image4"]').val(),
             id:$('input[name="id"]').val()
         },
         
@@ -109,7 +149,7 @@ function salvaProduto()
         success: function(response) 
         {
             if(response.status==true) {
-                $("#modal_produto").modal("hide");
+                $("#modal_novo_produto").modal("hide");
                 alert("OK");
             } else {
                 alert("Erro");
@@ -118,4 +158,32 @@ function salvaProduto()
 
     });
 }
+
+function salvaCategoria() 
+{
+    console.log($('input[name="name_categoria"]').val());
+    $.ajax({
+        type: "POST",
+        url: site_url + "categoria/ajax_save_categoria",
+        dataType: "JSON",
+        data:{
+            nome:  $('input[name="name_categoria"]').val()
+        },
+        
+        before_send: function()
+        {
+        },
+        success: function(response) 
+        {
+            if(response.status==true) {
+                $("#modal_nova_categoria").modal("hide");
+                alert("OK");
+            } else {
+                alert("Erro");
+            }
+        }
+
+    });
+}
+
 
