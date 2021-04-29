@@ -1,4 +1,4 @@
-const site_url = "http://localhost/admin/index.php/";
+const site_url = "https://admin.famcosmeticos.com.br/";
 $(function(){
     $("#btn_upload_produto_img").change(function()
     {
