@@ -37,6 +37,31 @@ class Categoria extends CI_Controller {
 
     public function editarCategoria()
     {
-        
+        $id = $_POST['id'];
+        $this->load->model("categories_model", "categorias");
+        $r = $this->categorias->get_one_category($id);
+
+        echo json_encode(array("status"=>true, "id"=>$r[0]->id, "nome"=>$r[0]->name));
+    }
+
+    public function excluirCategoria()
+    {
+        $id = $_POST['id'];
+		$this->load->model("categories_model", "categoria");
+		if($this->categoria->delete_one_category($id)) {
+			echo json_encode(array("status" => true));
+		} else{
+            echo json_encode(array("status" => false, "msg"=>"Existem produtos vinculados a essa categoria!"));
+        }
+    }
+
+    public function atualizarCategoria()
+    {
+        $id = $_POST['id'];
+        $data['name'] = $_POST['nome'];
+        $this->load->model("categories_model", "categoria");
+        $this->categoria->update_one_category($id, $data);
+
+        echo json_encode(array("status" => true));
     }
 }

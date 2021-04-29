@@ -69,7 +69,7 @@
 														echo("<tr>");
 														echo("<td>" . $p['id'] . "</td>");
 														echo("<td>" . $p['nome'] . "</td>");
-														echo("<td> <button id='btn_edit_produto' type='button' data-toggle='modal' data-target='#modal_categoria' class='btn btn-icon btn-round btn-primary' onclick='editarCategoria(".$p['id'].")'><i class='icon-note'></i></button> <button type='button' class='btn btn-icon btn-round btn-danger' onclick='excluirProduto(".$p['id'].")'><i class='flaticon-error'></i></button></td>");
+														echo("<td> <button id='btn_edit_produto' type='button' data-toggle='modal' data-target='#modal_categoria' class='btn btn-icon btn-round btn-primary' onclick='editarCategoria(".$p['id'].")'><i class='icon-note'></i></button> <button type='button' class='btn btn-icon btn-round btn-danger' onclick='excluirCategoria(".$p['id'].")'><i class='flaticon-error'></i></button></td>");
 														echo("</tr>");
 														$i++;
 													}
@@ -145,7 +145,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-            <h4 class="modal-title">Cursos</h4>
+            <h4 class="modal-title">Categorias</h4>
                 <button type="button" class="close" data-dismiss="modal">X</button>
                 
             </div>
@@ -154,16 +154,17 @@
                     <input hidden name="id">
 
                     <div class="form-group">
-                        <label for="name">Nome do Produto:</label>
+                        <label for="name_editar_categoria">Nome do Produto:</label>
                         <div class="col-lg-12">
-                            <input type="text" id="name" class="form-control" name="name"  >
+							<input type="hidden" name="id_editar_categoria" id="id_editar_categoria">
+                            <input type="text" id="name_editar_categoria" class="form-control" name="name_editar_categoria" >
                             <span class="help-block"></span>
                         </div>
                     </div>
 
                    
                     <div class="form-group text-center">
-                        <button id="btn_save_produto" type="button" onclick="salvaProduto()" class="btn btn-success">
+                        <button id="btn_save_produto" type="button" onclick="atualizaCategoria()" class="btn btn-success">
                             <i class="fa fa-save"></i> Salvar
                         </button>
                         <span class="help-block"></span>

@@ -1,4 +1,4 @@
-const site_url = "https://admin.famcosmeticos.com.br/";
+const site_url = "http://localhost/admin/";
 $(function(){
     $("#btn_upload_produto_img").change(function()
     {
@@ -73,13 +73,14 @@ function editarCategoria(id)
         beforeSend() {
 
         },error: function(erro){
-            console.log(erro.statusText);
+            console.log('erro');
         },
         success: function(data) {
             if(data.status == true){
                 $("#modal_categoria").modal("show");
                 console.log(data.nome);
-                $("#name_categoria").val(data.nome);
+                $("#id_editar_categoria").val(data.id);
+                $("#name_editar_categoria").val(data.nome);
             }
             else {
                 alert("Não logou");
@@ -89,7 +90,8 @@ function editarCategoria(id)
     });
 }
 
-function uploadImg(input_file, img, input_path){
+function uploadImg(input_file, img, input_path)
+{
     src_before = img.attr("src");
     img_file = input_file[0].files[0];
     form_data = new FormData();
@@ -178,6 +180,85 @@ function salvaCategoria()
             if(response.status==true) {
                 $("#modal_nova_categoria").modal("hide");
                 alert("OK");
+            } else {
+                alert("Erro");
+            }
+        }
+
+    });
+}
+
+function excluirProduto(id)
+{
+    $.ajax({
+        type: "POST",
+        url: site_url + "produto/excluirProduto",
+        dataType: "JSON",
+        data:{
+            id:  id
+        },
+        
+        before_send: function()
+        {
+        },
+        success: function(response) 
+        {
+            if(response.status==true) {
+                alert("Registro excluido");
+                window.location.href = site_url + "produto/";
+            } else {
+                alert("Erro");
+            }
+        }
+
+    });
+}
+
+function excluirCategoria(id)
+{
+    $.ajax({
+        type: "POST",
+        url: site_url + "categoria/excluirCategoria",
+        dataType: "JSON",
+        data:{
+            id:  id
+        },
+        
+        before_send: function()
+        {
+        },
+        success: function(response) 
+        {
+            if(response.status==true) {
+                alert("Registro excluido");
+                window.location.href = site_url + "categoria/";
+            } else {
+                alert("Erro");
+            }
+        }
+
+    });
+}
+
+function atualizaCategoria()
+{
+    $.ajax({
+        type: "POST",
+        url: site_url + "categoria/atualizarCategoria",
+        dataType: "JSON",
+        data:{
+            id: $('input[name="id_editar_categoria"]').val(),
+            nome: $('input[name="name_editar_categoria"]').val(),
+        },
+        
+        before_send: function()
+        {
+        },
+        success: function(response) 
+        {
+            if(response.status==true) {
+                alert("Registro atualizado com sucesso");
+                window.location.href = site_url + "categoria/";
             } else {
                 alert("Erro");
             }

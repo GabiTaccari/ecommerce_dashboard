@@ -39,10 +39,25 @@ class Products_model extends CI_Model {
         return $this->db->select("*")->from("products")->where("id", $id)->limit(1)->get()->result();
     }
 
-    public function insert($data) {
+    public function insert($data) 
+    {
         //$this->db->insert("products", $data);
 
         $this->db->query("INSERT INTO products (name, description, price, status, quantidade, necessario_cnpj, categories_id, cover_image) VALUES ('".$data["nome"]."', '".$data["descricao"]."', '".$data["preco"]."', '".$data["status"]."', '".$data["quantidade"]."', '".$data["necessario_cnpj"]."', '".$data["categoria"]."', '".$data["img"]."')");
         return $this->db->insert_id();
+    }
+
+    public function delete_one_product($id)
+    {
+        $this->load->model("products_images_model", "imagens");
+        $this->imagens->delete_product_images($id);
+        $this->db->delete('products', array('id' => $id));
+
+        return true;
+    }
+
+    public function get_product_by_category($id)
+    {
+        return $this->db->select("*")->from("products")->where("categories_id", $id)->get()->result();
     }
 }

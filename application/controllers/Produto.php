@@ -5,6 +5,7 @@ class Produto extends CI_Controller {
 
     public function index()
     {
+		$this->load->library('session');
         if(empty($this->session->userdata("user_id"))){
             //tratar sem acesso
             redirect('login/', 'refresh');
@@ -37,7 +38,7 @@ class Produto extends CI_Controller {
             exit("Nenhum acesso de script direto permitido");
         }
 
-		$config["upload_path"] = "https://famcosmeticos.com.br/public/produtos/";
+		$config["upload_path"] = "./public/produtos/";
 		$config["allowed_types"] = "gif|png|jpg";
 		$config["overwrite"] = TRUE;
 
@@ -52,7 +53,7 @@ class Produto extends CI_Controller {
 		} else {
 			if($this->upload->data()["file_size"] <=1024) {
 				$file_name = $this->upload->data()["file_name"];
-				$json["img_path"] = "/public/produtos/" . $file_name;
+				$json["img_path"] = base_url() . "public/produtos/" . $file_name;
 				$json["status"]=1;
 			} else {
 				$json["status"]=0;
@@ -81,6 +82,23 @@ class Produto extends CI_Controller {
         $data["img3"] = $_POST["imagem3"];
         $data["img4"] = $_POST["imagem4"];
 
+		$data["img"] = str_replace("http://localhost/admin/",  "", $data["img"]);
+		$data["img"] = str_replace("http://admin.famcosmeticos.com.br/",  "", $data["img"]);
+		$data["img"] = str_replace("https://admin.famcosmeticos.com.br/",  "", $data["img"]);
+
+
+		$data["img2"] = str_replace("http://localhost/admin/",  "", $data["img2"]);
+		$data["img2"] = str_replace("http://admin.famcosmeticos.com.br/",  "", $data["img2"]);
+		$data["img2"] = str_replace("https://admin.famcosmeticos.com.br/",  "", $data["img2"]);
+
+		$data["img3"] = str_replace("http://localhost/admin/",  "", $data["img3"]);
+		$data["img3"] = str_replace("http://admin.famcosmeticos.com.br/",  "", $data["img3"]);
+		$data["img3"] = str_replace("https://admin.famcosmeticos.com.br/",  "", $data["img3"]);
+
+		$data["img4"] = str_replace("http://localhost/admin/",  "", $data["img4"]);
+		$data["img4"] = str_replace("http://admin.famcosmeticos.com.br/",  "", $data["img4"]);
+		$data["img4"] = str_replace("https://admin.famcosmeticos.com.br/",  "", $data["img4"]);
+
 		if(empty($data["nome"])) {
 			echo json_encode(array("status" => false, "msg"=>"O campo nome é obrigatório"));
 			exit();
@@ -93,7 +111,7 @@ class Produto extends CI_Controller {
 
 		if(!empty($data["cover_image"])){
 			$file_name = basename($data["cover_img"]);
-			$old_path = getcwd() . "/tmp/".$file_name;
+			$old_path = getcwd() . "/public/produtos/".$file_name;
 			$new_path = getcwd() . "/public/images/produtos/".$file_name;
 			rename($old_path, $new_path);
 
@@ -105,10 +123,13 @@ class Produto extends CI_Controller {
 			$produto_id = $_POST["id"];
 			unset($_POST["id"]);
 			$id = $this->produtos->insert($data);
-			$dados['produto'] = $id;
-			$dados['path']=$data["img2"];
-			$this->imagens->insert($dados);
 
+			if(!empty($data["img2"])){
+                $dados['produto'] = $id;
+				$dados['path']=$data["img2"];
+				$this->imagens->insert($dados);
+            }
+			
             if(!empty($data["img3"])){
                 $dados['produto'] = $id;
                 $dados['path']=$data["img3"];
@@ -130,6 +151,15 @@ class Produto extends CI_Controller {
 
 		echo json_encode(array("status" => true));
 
+	}
+
+	public function excluirProduto()
+	{
+		$id = $_POST['id'];
+		$this->load->model("products_model", "produto");
+		if($this->produto->delete_one_product($id)) {
+			echo json_encode(array("status" => true));
+		}
 	}
 
 }

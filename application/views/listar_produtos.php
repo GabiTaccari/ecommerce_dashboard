@@ -74,7 +74,7 @@
 													foreach ($produtos as $p) {
 														echo("<tr>");
 														echo("<td>" . $p['nome'] . "</td>");
-														echo("<td>" . $p['imagem'] . "</td>");
+														echo("<td><img src='" .base_url() . $p['imagem'] . "' style='max-width:100px;'></td>");
 														echo("<td>" . $p['preco'] . "</td>");
 														echo("<td>" . $p['categoria'] . "</td>");
 														echo("<td>" . $p['status'] . "</td>");

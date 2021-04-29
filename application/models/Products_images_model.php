@@ -26,5 +26,12 @@ class Products_images_model extends CI_Model {
 
         return $this->db->get()->result();
     }
+
+    public function delete_product_images($id)
+    {
+        $this->db->delete('product_images', array('products_id' => $id));
+
+        return true;
+    }
 }
 ?>
