@@ -3,7 +3,7 @@
         <div class="sidebar-content">
             <div class="user">
                 <div class="avatar-sm float-left mr-2">
-                    <img src="<?php base_url(); ?>public/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                    <img src="<?php echo base_url(); ?>public/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
                 </div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -59,12 +59,12 @@
                     <div class="collapse" id="base">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="components/avatars.html">
+                                <a href="<?php echo base_url();?>produto/">
                                     <span class="sub-item">Visualizar Todos</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="components/buttons.html">
+                                <a href="" data-toggle='modal' data-target='#modal_novo_produto'>
                                     <span class="sub-item">Adicionar Novo</span>
                                 </a>
                             </li>

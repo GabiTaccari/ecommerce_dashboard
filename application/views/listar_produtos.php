@@ -1,142 +1,156 @@
-<!--   Core JS Files   -->
-<script src="<?php  echo base_url(); ?>public/assets/js/core/jquery.3.2.1.min.js"></script>
-<script src="<?php  echo base_url(); ?>public/assets/js/core/popper.min.js"></script>
-<script src="<?php  echo base_url(); ?>public/assets/js/core/bootstrap.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- jQuery UI -->
-<script src="<?php  echo base_url(); ?>public/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-<script src="<?php  echo base_url(); ?>public/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+<head>
+	<?php
+	include 'layout/head.php';
+	?>
+</head>
 
-<!-- jQuery Scrollbar -->
-<script src="<?php  echo base_url(); ?>public/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<body>
+	<div class="wrapper">
+		<?php
+		include 'layout/header.php';
+		include 'layout/sidebar.php';
+		?>
 
+		<div class="main-panel">
+			<div class="content">
+				<div class="page-inner">
+					<div class="page-header">
+						<h4 class="page-title">Visualizar Produtos</h4>
+						<ul class="breadcrumbs">
+							<li class="nav-home">
+								<a href="#">
+									<i class="flaticon-home"></i>
+								</a>
+							</li>
+							<li class="separator">
+								<i class="flaticon-right-arrow"></i>
+							</li>
+							<li class="nav-item">
+								<a href="#">Produtos</a>
+							</li>
+							<li class="separator">
+								<i class="flaticon-right-arrow"></i>
+							</li>
+							<li class="nav-item">
+								<a href="#">Listar</a>
+							</li>
+						</ul>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Produtos</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="basic-datatables" class="display table table-striped table-hover">
+											<thead>
+												<tr>
+													<th>Nome</th>
+													<th>Imagem Principal</th>
+													<th>Preço</th>
+													<th>Categoria</th>
+													<th>Status</th>
+													<th>Ação</th>
+												</tr>
+											</thead>
+											<tfoot>
+												<tr>
+													<th>Nome</th>
+													<th>Imagem Principal</th>
+													<th>Preço</th>
+													<th>Categoria</th>
+													<th>Status</th>
+													<th>Ação</th>
+												</tr>
+											</tfoot>
+											<tbody>
+											<?php 
+												$i = 0;
+													foreach ($produtos as $p) {
+														echo("<tr>");
+														echo("<td>" . $p['nome'] . "</td>");
+														echo("<td>" . $p['imagem'] . "</td>");
+														echo("<td>" . $p['preco'] . "</td>");
+														echo("<td>" . $p['categoria'] . "</td>");
+														echo("<td>" . $p['status'] . "</td>");
+														echo("<td> <button id='btn_edit_produto' type='button' data-toggle='modal' data-target='#modal_produto' class='btn btn-icon btn-round btn-primary' onclick='editarProduto(".$p['id'].")'><i class='icon-note'></i></button> <button type='button' class='btn btn-icon btn-round btn-danger' onclick='excluirProduto(".$p['id'].")'><i class='flaticon-error'></i></button></td>");
+														echo("</tr>");
+														$i++;
+													}
+												?>
+												
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-<!-- Chart JS -->
-<script src="<?php  echo base_url(); ?>public/assets/js/plugin/chart.js/chart.min.js"></script>
+		<?php
+		include 'layout/scripts.php';
+		?>
 
-<!-- jQuery Sparkline -->
-<script src="<?php  echo base_url(); ?>public/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('#basic-datatables').DataTable({});
 
-<!-- Chart Circle -->
-<script src="<?php  echo base_url(); ?>public/assets/js/plugin/chart-circle/circles.min.js"></script>
+				$('#multi-filter-select').DataTable({
+					"pageLength": 5,
+					initComplete: function() {
+						this.api().columns().every(function() {
+							var column = this;
+							var select = $('<select class="form-control"><option value=""></option></select>')
+								.appendTo($(column.footer()).empty())
+								.on('change', function() {
+									var val = $.fn.dataTable.util.escapeRegex(
+										$(this).val()
+									);
 
-<!-- Datatables -->
-<script src="<?php  echo base_url(); ?>public/assets/js/plugin/datatables/datatables.min.js"></script>
+									column
+										.search(val ? '^' + val + '$' : '', true, false)
+										.draw();
+								});
 
-<!-- Bootstrap Notify -->
-<script src="<?php  echo base_url(); ?>public/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+							column.data().unique().sort().each(function(d, j) {
+								select.append('<option value="' + d + '">' + d + '</option>')
+							});
+						});
+					}
+				});
 
-<!-- jQuery Vector Maps -->
-<script src="<?php  echo base_url(); ?>public/assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
-<script src="<?php  echo base_url(); ?>public/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+				// Add Row
+				$('#add-row').DataTable({
+					"pageLength": 5,
+				});
 
-<!-- Sweet Alert -->
-<script src="<?php  echo base_url(); ?>public/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+				var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger"  data-original-title="Remove" > <i class="fa fa-times"></i> </button> </div> </td>';
 
-<!-- Atlantis JS -->
-<script src="<?php  echo base_url(); ?>public/assets/js/atlantis.min.js"></script>
+				$('#addRowButton').click(function() {
+					$('#add-row').dataTable().fnAddData([
+						$("#addName").val(),
+						$("#addPosition").val(),
+						$("#addOffice").val(),
+						action
+					]);
+					$('#addRowModal').modal('hide');
 
-<script src="<?php echo base_url(); ?>public/assets/js/util.js"></script>
-
-<!-- <script>
-    Circles.create({
-        id: 'circles-1',
-        radius: 45,
-        value: 60,
-        maxValue: 100,
-        width: 7,
-        text: 5,
-        colors: ['#f1f1f1', '#FF9E27'],
-        duration: 400,
-        wrpClass: 'circles-wrp',
-        textClass: 'circles-text',
-        styleWrapper: true,
-        styleText: true
-    })
-
-    Circles.create({
-        id: 'circles-2',
-        radius: 45,
-        value: 70,
-        maxValue: 100,
-        width: 7,
-        text: 36,
-        colors: ['#f1f1f1', '#2BB930'],
-        duration: 400,
-        wrpClass: 'circles-wrp',
-        textClass: 'circles-text',
-        styleWrapper: true,
-        styleText: true
-    })
-
-    Circles.create({
-        id: 'circles-3',
-        radius: 45,
-        value: 40,
-        maxValue: 100,
-        width: 7,
-        text: 12,
-        colors: ['#f1f1f1', '#F25961'],
-        duration: 400,
-        wrpClass: 'circles-wrp',
-        textClass: 'circles-text',
-        styleWrapper: true,
-        styleText: true
-    })
-
-    var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
-
-    var mytotalIncomeChart = new Chart(totalIncomeChart, {
-        type: 'bar',
-        data: {
-            labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
-            datasets: [{
-                label: "Total Income",
-                backgroundColor: '#ff9e27',
-                borderColor: 'rgb(23, 125, 255)',
-                data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
-            }],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend: {
-                display: false,
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        display: false //this will remove only the label
-                    },
-                    gridLines: {
-                        drawBorder: false,
-                        display: false
-                    }
-                }],
-                xAxes: [{
-                    gridLines: {
-                        drawBorder: false,
-                        display: false
-                    }
-                }]
-            },
-        }
-    });
-
-    $('#lineChart').sparkline([105, 103, 123, 100, 95, 105, 115], {
-        type: 'line',
-        height: '70',
-        width: '100%',
-        lineWidth: '2',
-        lineColor: '#ffa534',
-        fillColor: 'rgba(255, 165, 52, .14)'
-    });
-</script> -->
+				});
+			});
+		</script>
 
 
 <!-- Modal para adicionar produto -->
 
-<div id="modal_novo_produto" class="modal fade">
+<div id="modal_produto" class="modal fade">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">

@@ -1,10 +1,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>Fam Cosméticos</title>
 <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-<link rel="icon" href="<?php base_url(); ?>public/assets/img/icon.ico" type="image/x-icon" />
+<link rel="icon" href="<?php echo base_url(); ?>public/assets/img/icon.ico" type="image/x-icon" />
 
 <!-- Fonts and icons -->
-<script src="<?php  base_url(); ?>public/assets/js/plugin/webfont/webfont.min.js"></script>
+<script src="<?php echo base_url(); ?>public/assets/js/plugin/webfont/webfont.min.js"></script>
 <script>
     WebFont.load({
         google: {
@@ -12,7 +12,7 @@
         },
         custom: {
             "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"],
-            urls: ['<?php  base_url(); ?>public/assets/css/fonts.min.css']
+            urls: ['<?php echo base_url(); ?>public/assets/css/fonts.min.css']
         },
         active: function() {
             sessionStorage.fonts = true;
@@ -21,8 +21,8 @@
 </script>
 
 <!-- CSS Files -->
-<link rel="stylesheet" href="<?php  base_url(); ?>public/assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="<?php  base_url(); ?>public/assets/css/atlantis.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/css/atlantis.min.css">
 
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link rel="stylesheet" href="<?php  base_url(); ?>public/assets/css/demo.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/css/demo.css">

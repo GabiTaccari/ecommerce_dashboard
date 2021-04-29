@@ -60,7 +60,7 @@
 <body class="text-center">
 
   <form class="form-signin">
-    <img class="mb-4" src="<?php base_url() ?>public/assets/img/logo-fam-horizontal.png" alt="" width="150" height="72">
+    <img class="mb-4" src="<?php echo base_url() ?>public/assets/img/logo-fam-horizontal.png" alt="" width="150" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Faça Login</h1>
     <label for="login" class="sr-only">Email</label>
     <input type="hidden" id="teste" class="form-control" placeholder="teste" required="" autofocus=""><br>
@@ -73,8 +73,8 @@
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="<?php base_url(); ?>public/assets/js/login.js"></script>
-<script src="<?php base_url(); ?>public/assets/js/util.js"></script>
+<script src="<?php echo base_url(); ?>public/assets/js/login.js"></script>
+<script src="<?php echo base_url(); ?>public/assets/js/util.js"></script>
 
 </body>
 </html>

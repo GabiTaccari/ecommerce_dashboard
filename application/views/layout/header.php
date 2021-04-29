@@ -3,7 +3,7 @@
     <div class="logo-header" data-background-color="blue">
 
         <a href="index.html" class="logo">
-            <img src="<?php base_url() ?>public/assets/img/logo-fam-horizontal.png" style="max-width:100px;" alt="navbar brand" class="navbar-brand">
+            <img src="<?php echo base_url() ?>public/assets/img/logo-fam-horizontal.png" style="max-width:100px;" alt="navbar brand" class="navbar-brand">
         </a>
         <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon">
@@ -213,14 +213,14 @@
                 <li class="nav-item dropdown hidden-caret">
                     <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                         <div class="avatar-sm">
-                            <img src="<?php base_url() ?>public/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                            <img src="<?php echo base_url() ?>public/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-user animated fadeIn">
                         <div class="dropdown-user-scroll scrollbar-outer">
                             <li>
                                 <div class="user-box">
-                                    <div class="avatar-lg"><img src="<?php base_url(); ?>public/assets/img/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
+                                    <div class="avatar-lg"><img src="<?php echo base_url(); ?>public/assets/img/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
                                     <div class="u-text">
                                         <h4>Hizrian</h4>
                                         <p class="text-muted">hello@example.com</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">Ver Perfil</a>
