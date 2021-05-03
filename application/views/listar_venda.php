@@ -81,6 +81,12 @@
                                             echo("<a target='_blank' href='". base_url() ."venda/rastreio?venda=".$order[0]->id."'><button class='btn btn-warning'><i class='la flaticon-signs-3'></i> Adicionar Código de Rastreio</button></a>");
                                             //echo("<button id='campo_rastreio' class='btn btn-warning'><i class='la flaticon-signs-3'></i> Adicionar Código de Rastreio</button>");
                                         }
+
+										if($order[0]->order_status == 'Aguardando Pagamento' and $order[0]->track_code == NULL)
+                                        {
+                                            echo("<a target='_blank' href='". base_url() ."venda/liberarPagamento?venda=".$order[0]->id."'><button class='btn btn-warning'><i class='la flaticon-signs-3'></i> Liberar Pagamento</button></a>");
+                                            //echo("<button id='campo_rastreio' class='btn btn-warning'><i class='la flaticon-signs-3'></i> Adicionar Código de Rastreio</button>");
+                                        }
                                         ?>
 
 									</div>
