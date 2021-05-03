@@ -27,18 +27,13 @@
                                     <span class="link-collapse">Editar Perfil</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#settings">
-                                    <span class="link-collapse">Configurações</span>
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <ul class="nav nav-primary">
                 <li class="nav-item active">
-                    <a href="http://a">
+                    <a href="<?php echo base_url(); ?>">
                         <i class="fas fa-home"></i>
                         <p>Painel</p>
                     </a>
@@ -101,20 +96,20 @@
                     <div class="collapse" id="forms">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="forms/forms.html">
+                                <a href="<?php echo base_url();?>usuario/">
                                     <span class="sub-item">Visualizar Todos</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="forms/forms.html">
+                                <a href="<?php echo base_url();?>usuario/pendentes">
                                     <span class="sub-item">Liberação Pendente</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="forms/forms.html">
-                                    <span class="sub-item">Adicionar Novo</span>
+                                <a href="<?php echo base_url();?>usuario/liberados">
+                                    <span class="sub-item">Liberados</span>
                                 </a>
                             </li>
                         </ul>
@@ -129,34 +124,29 @@
                     <div class="collapse" id="tables">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="tables/tables.html">
+                                <a href="<?php echo base_url();?>venda/">
                                     <span class="sub-item">Visualizar Todas</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="tables/tables.html">
-                                    <span class="sub-item">Visualizar Novas</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tables/datatables.html">
+                                <a href="<?php echo base_url();?>venda/pendentes">
                                     <span class="sub-item">Pendentes</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="tables/datatables.html">
+                                <a href="<?php echo base_url();?>venda/trajeto">
                                     <span class="sub-item">Em trajeto</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="tables/datatables.html">
+                                <a href="<?php echo base_url();?>venda/concluidas">
                                     <span class="sub-item">Concluídas</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a data-toggle="collapse" href="#charts">
                         <i class="far fa-chart-bar"></i>
                         <p>Análise</p>
@@ -172,7 +162,7 @@
                             
                         </ul>
                     </div>
-                </li>
+                </li> -->
                 
                 <li class="mx-4 mt-2">
                     <a href="https://famcosmeticos.com.br/" target="_blank" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fa fa-shopping-cart"></i> </span>Visualizar Loja</a>

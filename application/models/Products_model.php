@@ -60,4 +60,14 @@ class Products_model extends CI_Model {
     {
         return $this->db->select("*")->from("products")->where("categories_id", $id)->get()->result();
     }
+
+    public function update_one_product($id, $data)
+    {
+        // $this->db->query("UPDATE products 
+        // SET name = '{$data['name']}' WHERE id = '$id'}");
+        // $this->db->where('id', $id);
+        // $this->db->update('products');
+        $this->db->where('id', $id);
+        return $this->db->update('products', $data);;
+    }
 }

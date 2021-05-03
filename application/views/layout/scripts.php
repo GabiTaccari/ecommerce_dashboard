@@ -135,7 +135,6 @@
 
 
 <!-- Modal para adicionar produto -->
-
 <div id="modal_novo_produto" class="modal fade">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -240,16 +239,7 @@
                             <input id="image2" type="hidden" name="image2">
                             <span class="help-block"></span>
                         </div>
-                        <!--
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-2">
-
-                        <button type="button" class="btn btn-icon btn-round btn-primary">
-											<i class="fa fa-plus"></i>
-										</button>
-
-                        </div>-->
-
+                        
                         <div class="col-lg-12">
                             <img src="" style="max-height:400px; max-width: 400px;" alt="" id="produto_img_path3">
                             <label class="btn btn-block btn-info">

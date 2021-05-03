@@ -50,35 +50,29 @@
 										<table id="basic-datatables" class="display table table-striped table-hover">
 											<thead>
 												<tr>
-													<th>Nome</th>
-													<th>Imagem Principal</th>
-													<th>Preço</th>
-													<th>Categoria</th>
-													<th>Status</th>
+													<th>#</th>
+													<th>E-mail</th>
+													<th>Permissão</th>
 													<th>Ação</th>
 												</tr>
 											</thead>
 											<tfoot>
 												<tr>
-													<th>Nome</th>
-													<th>Imagem Principal</th>
-													<th>Preço</th>
-													<th>Categoria</th>
-													<th>Status</th>
+													<th>#</th>
+													<th>E-mail</th>
+													<th>Permissão</th>
 													<th>Ação</th>
 												</tr>
 											</tfoot>
 											<tbody>
 											<?php 
 												$i = 0;
-													foreach ($produtos as $p) {
+													foreach ($usuarios as $p) {
 														echo("<tr>");
-														echo("<td>" . $p['nome'] . "</td>");
-														echo("<td><img src='" .base_url() . $p['imagem'] . "' style='max-width:100px;'></td>");
-														echo("<td>" . $p['preco'] . "</td>");
-														echo("<td>" . $p['categoria'] . "</td>");
-														echo("<td>" . $p['status'] . "</td>");
-														echo("<td> <button id='btn_edit_produto' type='button' data-toggle='modal' data-target='#modal_produto' class='btn btn-icon btn-round btn-primary' onclick='editarProduto(".$p['id'].")'><i class='icon-note'></i></button> <button type='button' class='btn btn-icon btn-round btn-danger' onclick='excluirProduto(".$p['id'].")'><i class='flaticon-error'></i></button></td>");
+														echo("<td>" . $p['id'] . "</td>");
+														echo("<td>" . $p['email'] . "</td>");
+														echo("<td>" . $p['roles'] . "</td>");
+														echo("<td> <button id='btn_libera_usuario' type='button' class='btn btn-icon btn-round btn-success' onclick='liberarUsuario(".$p['id'].")'><i class='icon-check'></i></button><button type='button' class='btn btn-icon btn-round btn-danger' onclick='excluirUsuario(".$p['id'].")'><i class='flaticon-error'></i></button></td>");
 														echo("</tr>");
 														$i++;
 													}

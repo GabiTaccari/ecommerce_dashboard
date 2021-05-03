@@ -18,7 +18,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Visualizar Produtos</h4>
+						<h4 class="page-title">Visualizar Vendas</h4>
 						<ul class="breadcrumbs">
 							<li class="nav-home">
 								<a href="#">
@@ -29,7 +29,7 @@
 								<i class="flaticon-right-arrow"></i>
 							</li>
 							<li class="nav-item">
-								<a href="#">Produtos</a>
+								<a href="#">Vendas</a>
 							</li>
 							<li class="separator">
 								<i class="flaticon-right-arrow"></i>
@@ -43,42 +43,39 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">Produtos</h4>
+									<h4 class="card-title">Vendas</h4>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
 										<table id="basic-datatables" class="display table table-striped table-hover">
 											<thead>
 												<tr>
-													<th>Nome</th>
-													<th>Imagem Principal</th>
-													<th>Preço</th>
-													<th>Categoria</th>
+													<th>#</th>
+													<th>Endereço</th>
+													<th>Pincode</th>
+													<th>Valor</th>
 													<th>Status</th>
-													<th>Ação</th>
 												</tr>
 											</thead>
 											<tfoot>
 												<tr>
-													<th>Nome</th>
-													<th>Imagem Principal</th>
-													<th>Preço</th>
-													<th>Categoria</th>
+													<th>#</th>
+													<th>Endereço</th>
+													<th>Pincode</th>
+													<th>Valor</th>
 													<th>Status</th>
-													<th>Ação</th>
 												</tr>
 											</tfoot>
 											<tbody>
 											<?php 
 												$i = 0;
 													foreach ($produtos as $p) {
-														echo("<tr>");
-														echo("<td>" . $p['nome'] . "</td>");
-														echo("<td><img src='" .base_url() . $p['imagem'] . "' style='max-width:100px;'></td>");
-														echo("<td>" . $p['preco'] . "</td>");
-														echo("<td>" . $p['categoria'] . "</td>");
+														echo("<td>" . $p['id'] . "</td>");
+														echo("<td><a target='__blank' href='".base_url()."venda/listar?venda=".$p['id']."'>" . $p['endereco'] . "</a></td>");
+														echo("<td>" . $p['pincode'] . "</td>");
+														echo("<td>" . $p['valor'] . "</td>");
 														echo("<td>" . $p['status'] . "</td>");
-														echo("<td> <button id='btn_edit_produto' type='button' data-toggle='modal' data-target='#modal_produto' class='btn btn-icon btn-round btn-primary' onclick='editarProduto(".$p['id'].")'><i class='icon-note'></i></button> <button type='button' class='btn btn-icon btn-round btn-danger' onclick='excluirProduto(".$p['id'].")'><i class='flaticon-error'></i></button></td>");
+														//echo("<td> <button id='btn_edit_produto' type='button' data-toggle='modal' data-target='#modal_produto' class='btn btn-icon btn-round btn-primary' onclick='editarProduto(".$p['id'].")'><i class='icon-note'></i></button> <button type='button' class='btn btn-icon btn-round btn-danger' onclick='excluirProduto(".$p['id'].")'><i class='flaticon-error'></i></button></td>");
 														echo("</tr>");
 														$i++;
 													}

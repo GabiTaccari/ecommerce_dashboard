@@ -26,8 +26,10 @@ class Produto extends CI_Controller {
     {
         $id = $_POST['id'];
         $this->load->model("products_model", "produtos");
+		$this->load->model("products_images_model", "imagens");
+		$img = $this->imagens->get_all_product_image($id);
         $r = $this->produtos->get_one_product($id);
-        echo json_encode(array("status"=>true, "nome"=>$r[0]->name, "descricao"=>$r[0]->description, "preco"=>$r[0]->price, "categoria"=>$r[0]->categories_id, "status_produto"=>$r[0]->status, "quantidade"=>$r[0]->quantidade, "necessario_cnpj"=>$r[0]->necessario_cnpj));
+        echo json_encode(array("status"=>true, "imagem1"=>$r[0]->cover_image, "imgs"=>$img, "nome"=>$r[0]->name, "descricao"=>$r[0]->description, "preco"=>$r[0]->price, "categoria"=>$r[0]->categories_id, "status_produto"=>$r[0]->status, "quantidade"=>$r[0]->quantidade, "necessario_cnpj"=>$r[0]->necessario_cnpj));
         exit();
     }
 
@@ -129,7 +131,7 @@ class Produto extends CI_Controller {
 				$dados['path']=$data["img2"];
 				$this->imagens->insert($dados);
             }
-			
+
             if(!empty($data["img3"])){
                 $dados['produto'] = $id;
                 $dados['path']=$data["img3"];
@@ -151,6 +153,62 @@ class Produto extends CI_Controller {
 
 		echo json_encode(array("status" => true));
 
+	}
+
+	public function ajax_edit_produto()
+	{
+		$this->load->model("products_model", "produtos");
+		$this->load->model("products_images_model", "imagens");
+		$id = $_POST["id"];
+		$data["name"] = $_POST["nome"];
+		$data["description"] = $_POST["descricao"];
+		$data["price"] = $_POST["preco"];
+		$data["categories_id"] = $_POST["categoria"];
+		$data["status"] = $_POST["status"];
+		$data["quantidade"] = $_POST["quantidade"];
+		$data["necessario_cnpj"] = $_POST["necessarioCNPJ"];
+		$data["cover_image"] = $_POST["imagem_principal"];
+
+		// $img["img2"] = $_POST["imagem2"];
+        // $img["img3"] = $_POST["imagem3"];
+        // $img["img4"] = $_POST["imagem4"];
+
+		$data["cover_image"] = str_replace("http://localhost/admin/",  "", $data["cover_image"]);
+		$data["cover_image"] = str_replace("http://admin.famcosmeticos.com.br/",  "", $data["cover_image"]);
+		$data["cover_image"] = str_replace("https://admin.famcosmeticos.com.br/",  "", $data["cover_image"]);
+
+
+		// $img["img2"] = str_replace("http://localhost/admin/",  "", $data["img2"]);
+		// $img["img2"] = str_replace("http://admin.famcosmeticos.com.br/",  "", $data["img2"]);
+		// $img["img2"] = str_replace("https://admin.famcosmeticos.com.br/",  "", $data["img2"]);
+
+		// $img["img3"] = str_replace("http://localhost/admin/",  "", $data["img3"]);
+		// $data["img3"] = str_replace("http://admin.famcosmeticos.com.br/",  "", $data["img3"]);
+		// $data["img3"] = str_replace("https://admin.famcosmeticos.com.br/",  "", $data["img3"]);
+
+		// $img["img4"] = str_replace("http://localhost/admin/",  "", $data["img4"]);
+		// $img["img4"] = str_replace("http://admin.famcosmeticos.com.br/",  "", $data["img4"]);
+		// $img["img4"] = str_replace("https://admin.famcosmeticos.com.br/",  "", $data["img4"]);
+
+		
+
+		// if(!empty($data["cover_image"])){
+		// 	$file_name = basename($data["cover_image"]);
+		// 	$old_path = getcwd() . "/public/produtos/".$file_name;
+		// 	$new_path = getcwd() . "/public/images/produtos/".$file_name;
+		// 	rename($old_path, $new_path);
+
+		// 	$data["cover_image"] = "/public/produtos/".$file_name;
+		// }
+
+
+		
+		$produto_id = $id;
+		$this->produtos->update_one_product($produto_id, $data);
+
+		
+
+		echo json_encode(array("status" => true));
 	}
 
 	public function excluirProduto()
