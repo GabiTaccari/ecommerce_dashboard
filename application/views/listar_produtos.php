@@ -78,7 +78,7 @@
 														echo("<td>" . $p['preco'] . "</td>");
 														echo("<td>" . $p['categoria'] . "</td>");
 														echo("<td>" . $p['status'] . "</td>");
-														echo("<td> <button id='btn_edit_produto' type='button' data-toggle='modal' data-target='#modal_produto' class='btn btn-icon btn-round btn-primary' onclick='editarProduto(".$p['id'].")'><i class='icon-note'></i></button> <button type='button' class='btn btn-icon btn-round btn-danger' onclick='excluirProduto(".$p['id'].")'><i class='flaticon-error'></i></button></td>");
+														echo("<td> <button id='btn_edit_produto' type='button' data-toggle='modal' data-target='#modal_produto' class='btn btn-icon btn-round btn-primary' onclick='editarProduto(".$p['id'].")'><i class='icon-note'></i></button>  <button id='btn_edit_produto' type='button' data-toggle='modal' data-target='#modal_produto' class='btn btn-icon btn-round btn-primary' onclick='copiarProduto(".$p['id'].")'><i class='icon-copy'></i></button>   <button type='button' class='btn btn-icon btn-round btn-danger' onclick='excluirProduto(".$p['id'].")'><i class='flaticon-error'></i></button></td>");
 														echo("</tr>");
 														$i++;
 													}
@@ -178,10 +178,18 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+					<div class="form-group">
                         <label for="price">Preço</label>
                         <div class="col-lg-12">
                         <input type="float" id="editar_produto_price" class="form-control" name="editar_produto_price"  >
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+					<div class="form-group">
+                        <label for="price">Preço para CNPJ: </label>
+                        <div class="col-lg-12">
+                        <input type="float" id="editar_produto_price_cnpj" class="form-control" name="editar_produto_price_cnpj"  >
                             <span class="help-block"></span>
                         </div>
                     </div>

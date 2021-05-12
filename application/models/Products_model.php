@@ -43,7 +43,7 @@ class Products_model extends CI_Model {
     {
         //$this->db->insert("products", $data);
 
-        $this->db->query("INSERT INTO products (name, description, price, status, quantidade, necessario_cnpj, categories_id, cover_image) VALUES ('".$data["nome"]."', '".$data["descricao"]."', '".$data["preco"]."', '".$data["status"]."', '".$data["quantidade"]."', '".$data["necessario_cnpj"]."', '".$data["categoria"]."', '".$data["img"]."')");
+        $this->db->query("INSERT INTO products (name, description, price, price_cnpj, status, quantidade, necessario_cnpj, categories_id, cover_image) VALUES ('".$data["nome"]."', '".$data["descricao"]."', '".$data["preco"]."', '".$data["preco_cnpj"]."', '".$data["status"]."', '".$data["quantidade"]."', '".$data["necessario_cnpj"]."', '".$data["categoria"]."', '".$data["img"]."')");
         return $this->db->insert_id();
     }
 

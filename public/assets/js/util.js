@@ -77,6 +77,7 @@ function editarProduto(id)
                 $("#editar_produto_name").val(data.nome);
                 $("#editar_produto_description").val(data.descricao);
                 $("#editar_produto_price").val(data.preco);
+                $("#editar_produto_price_cnpj").val(data.preco_cnpj);
                 $("#editar_produto_category_id").val(data.categoria);
                 $("#editar_produto_status").val(data.status);
                 $("#editar_produto_quantidade").val(data.quantidade);
@@ -210,6 +211,7 @@ function salvaProduto()
             nome:  $('input[name="name"]').val(),  //$("#btn_upload_produto_img").val(), //pegar pelo name ->ver exemplo no outro código
             descricao: $('#description').val(),
             preco: $('input[name="price"]').val(),
+            preco_cnpj: $('input[name="price_cnpj"]').val(),
             categoria: $('select[name="category_id"]').val(),
             status: $('select[name="status"]').val(),
             quantidade: $('input[name="quantidade"]').val(),
@@ -249,6 +251,7 @@ function salvaEditarProduto()
             nome:  $('input[name="editar_produto_name"]').val(),  //$("#btn_upload_produto_img").val(), //pegar pelo name ->ver exemplo no outro código
             descricao: $('#editar_produto_description').val(),
             preco: $('input[name="editar_produto_price"]').val(),
+            preco_cnpj: $('input[name="editar_produto_price_cnpj"]').val(),
             categoria: $('select[name="editar_produto_category_id"]').val(),
             status: $('select[name="editar_produto_status"]').val(),
             quantidade: $('input[name="editar_produto_quantidade"]').val(),

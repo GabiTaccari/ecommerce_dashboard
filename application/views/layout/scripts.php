@@ -173,6 +173,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="price">Preço para CNPJ:</label>
+                        <div class="col-lg-12">
+                        <input type="float" id="price" class="form-control" name="price_cnpj"  >
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="category_id">Categoria</label>
                         <div class="col-lg-12">
                             <?=form_dropdown('category_id', [''=>'Selecione']+$categorias, '', 'id="category_id" class="form-control"')?>

@@ -29,7 +29,7 @@ class Produto extends CI_Controller {
 		$this->load->model("products_images_model", "imagens");
 		$img = $this->imagens->get_all_product_image($id);
         $r = $this->produtos->get_one_product($id);
-        echo json_encode(array("status"=>true, "imagem1"=>$r[0]->cover_image, "imgs"=>$img, "nome"=>$r[0]->name, "descricao"=>$r[0]->description, "preco"=>$r[0]->price, "categoria"=>$r[0]->categories_id, "status_produto"=>$r[0]->status, "quantidade"=>$r[0]->quantidade, "necessario_cnpj"=>$r[0]->necessario_cnpj));
+        echo json_encode(array("status"=>true, "imagem1"=>$r[0]->cover_image, "imgs"=>$img, "nome"=>$r[0]->name, "descricao"=>$r[0]->description, "preco"=>$r[0]->price, "preco_cnpj"=>$r[0]->price_cnpj, "categoria"=>$r[0]->categories_id, "status_produto"=>$r[0]->status, "quantidade"=>$r[0]->quantidade, "necessario_cnpj"=>$r[0]->necessario_cnpj));
         exit();
     }
 
@@ -75,6 +75,7 @@ class Produto extends CI_Controller {
 		$data["nome"] = $_POST["nome"];
 		$data["descricao"] = $_POST["descricao"];
 		$data["preco"] = $_POST["preco"];
+		$data["preco_cnpj"] = $_POST["preco_cnpj"];
 		$data["categoria"] = $_POST["categoria"];
 		$data["status"] = $_POST["status"];
 		$data["quantidade"] = $_POST["quantidade"];
@@ -163,6 +164,7 @@ class Produto extends CI_Controller {
 		$data["name"] = $_POST["nome"];
 		$data["description"] = $_POST["descricao"];
 		$data["price"] = $_POST["preco"];
+		$data["price_cnpj"] = $_POST["preco_cnpj"];
 		$data["categories_id"] = $_POST["categoria"];
 		$data["status"] = $_POST["status"];
 		$data["quantidade"] = $_POST["quantidade"];
